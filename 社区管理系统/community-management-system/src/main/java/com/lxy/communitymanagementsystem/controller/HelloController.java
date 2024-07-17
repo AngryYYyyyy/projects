@@ -1,9 +1,11 @@
 package com.lxy.communitymanagementsystem.controller;
 
+import com.lxy.communitymanagementsystem.model.dto.ResponseResult;
+import com.lxy.communitymanagementsystem.service.CommunityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Author ：AngryYYYYYY
@@ -12,9 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Controller
 public class HelloController {
+    @Autowired
+    private CommunityService communityService;
+
     @GetMapping("/hello")
     @ResponseBody
-    public String hello() {
-        return "hello";
+    public ResponseResult<String> hello() {
+
+        return  ResponseResult.failure();
     }
 }

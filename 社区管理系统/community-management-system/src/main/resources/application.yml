@@ -23,7 +23,7 @@ server:
 # 日志配置
 logging:
   level:
-    com.msb: debug
+    com.lxy: debug
     org.springframework: warn
 
 # Spring配置
@@ -37,17 +37,6 @@ spring:
 
 # MyBatis配置
 
-# PageHelper分页插件
-pagehelper:
-  #数据库类型
-  helperDialect: mysql
-  #查询合理化 当该参数设置为 true 时，pageNum<=0 时会查询第一页， pageNum>pages（超过总数时），会查询最后一页
-  reasonable: true
-  # 自动分页的配置，依据的是入参，如果参数中有pageNum，pageSize分页参数，则会自动分页
-  supportMethodsArguments: true
-  # params：为了支持startPage(Object params)方法，增加了该参数来配置参数映射，用于从对象中根据属性名取值
-  params: count=countSql
-
 ## mybatis-plus配置
 mybatis-plus:
   ## plus的实体别名包，不需要写出实体类的完整路径，只需要写出类名即可
@@ -55,7 +44,6 @@ mybatis-plus:
   ## mybatis  mapper.xml的位置
   mapper-locations: classpath:mapper/*Mapper.xml
   ## mybatis  config的配置文件位置
-
   config-location: classpath:mybatis/mybatis-config.xml
   ## 全局配置
   global-config:

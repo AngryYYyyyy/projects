@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxy.communitymanagementsystem.mapper.UnitMapper">
+
+    <resultMap id="BaseResultMap" type="com.lxy.communitymanagementsystem.model.entity.Unit">
+            <result property="unitId" column="unit_id" jdbcType="BIGINT"/>
+            <result property="communityId" column="community_id" jdbcType="BIGINT"/>
+            <result property="buildingId" column="building_id" jdbcType="BIGINT"/>
+            <result property="unitName" column="unit_name" jdbcType="VARCHAR"/>
+            <result property="unitCode" column="unit_code" jdbcType="VARCHAR"/>
+            <result property="unitLevel" column="unit_level" jdbcType="INTEGER"/>
+            <result property="unitAcreage" column="unit_acreage" jdbcType="DECIMAL"/>
+            <result property="unitHaveElevator" column="unit_have_elevator" jdbcType="VARCHAR"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        unit_id,community_id,building_id,
+        unit_name,unit_code,unit_level,
+        unit_acreage,unit_have_elevator,create_by,
+        create_time,update_by,update_time,
+        remark
+    </sql>
+</mapper>

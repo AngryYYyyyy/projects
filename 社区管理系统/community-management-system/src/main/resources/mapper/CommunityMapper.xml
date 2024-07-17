@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxy.communitymanagementsystem.mapper.CommunityMapper">
+
+    <resultMap id="BaseResultMap" type="com.lxy.communitymanagementsystem.model.entity.Community">
+            <id property="communityId" column="community_id" jdbcType="BIGINT"/>
+            <result property="communityName" column="community_name" jdbcType="VARCHAR"/>
+            <result property="communityCode" column="community_code" jdbcType="VARCHAR"/>
+            <result property="communityProvinceCode" column="community_province_code" jdbcType="VARCHAR"/>
+            <result property="communityCityCode" column="community_city_code" jdbcType="VARCHAR"/>
+            <result property="communityTownCode" column="community_town_code" jdbcType="VARCHAR"/>
+            <result property="communityDetailedAddress" column="community_detailed_address" jdbcType="VARCHAR"/>
+            <result property="communityLongitude" column="community_longitude" jdbcType="VARCHAR"/>
+            <result property="communityLatitude" column="community_latitude" jdbcType="VARCHAR"/>
+            <result property="deptId" column="dept_id" jdbcType="BIGINT"/>
+            <result property="communitySort" column="community_sort" jdbcType="INTEGER"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="CommunityDTOMap" type="com.lxy.communitymanagementsystem.model.dto.CommunityDTO" extends="BaseResultMap">
+        <!-- Additional results for DTO that are not present in the base entity map -->
+        <result property="communityProvenceName" column="province_name" jdbcType="VARCHAR"/>
+        <result property="communityCityName" column="city_name" jdbcType="VARCHAR"/>
+        <result property="communityTownName" column="town_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+
+    <sql id="Base_Column_List">
+        community_id,community_name,community_code,
+        community_province_code,community_city_code,community_town_code,
+        community_detailed_address,community_longitude,community_latitude,
+        dept_id,community_sort,create_by,
+        create_time,update_by,update_time,
+        remark
+    </sql>
+
+
+    <select id="queryList" parameterType="com.lxy.communitymanagementsystem.model.dto.CommunityDTO" resultMap="CommunityDTOMap">
+        SELECT ac.*, ap.name as province_name, ac2.name as city_name, at.name as town_name
+        FROM assets_community ac
+        LEFT JOIN sys_area ap ON ac.community_province_code = ap.code
+        LEFT JOIN sys_area ac2 ON ac.community_city_code = ac2.code
+        LEFT JOIN sys_area at ON ac.community_town_code = at.code
+        <where>
+            <if test="communityName != null and communityName != ''">
+                AND ac.community_name = #{communityName}
+            </if>
+            <if test="communityCode != null and communityCode != ''">
+                AND ac.community_code = #{communityCode}
+            </if>
+        </where>
+        <if test="sortOrder != null and communityCode != ''">
+            ORDER BY ac.community_sort #{sortOrder}
+        </if>
+    </select>
+</mapper>

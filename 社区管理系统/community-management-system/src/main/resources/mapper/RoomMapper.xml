@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxy.communitymanagementsystem.mapper.RoomMapper">
+
+    <resultMap id="BaseResultMap" type="com.lxy.communitymanagementsystem.model.entity.Room">
+            <result property="roomId" column="room_id" jdbcType="BIGINT"/>
+            <result property="communityId" column="community_id" jdbcType="BIGINT"/>
+            <result property="buildingId" column="building_id" jdbcType="BIGINT"/>
+            <result property="unitId" column="unit_id" jdbcType="BIGINT"/>
+            <result property="roomLevel" column="room_level" jdbcType="INTEGER"/>
+            <result property="roomCode" column="room_code" jdbcType="VARCHAR"/>
+            <result property="roomName" column="room_name" jdbcType="VARCHAR"/>
+            <result property="roomAcreage" column="room_acreage" jdbcType="DECIMAL"/>
+            <result property="roomCost" column="room_cost" jdbcType="DECIMAL"/>
+            <result property="roomStatus" column="room_status" jdbcType="VARCHAR"/>
+            <result property="roomIsShop" column="room_is_shop" jdbcType="VARCHAR"/>
+            <result property="roomSCommercialHouse" column="room_s_commercial_house" jdbcType="VARCHAR"/>
+            <result property="roomHouseType" column="room_house_type" jdbcType="VARCHAR"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        room_id,community_id,building_id,
+        unit_id,room_level,room_code,
+        room_name,room_acreage,room_cost,
+        room_status,room_is_shop,room_s_commercial_house,
+        room_house_type,create_by,create_time,
+        update_by,update_time,remark
+    </sql>
+</mapper>
