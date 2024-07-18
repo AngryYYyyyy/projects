@@ -26,32 +26,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public ResponseResult BusinessExceptionHandler(HttpServletRequest req, BusinessException e){
         log.error("发生业务异常！原因是：",e.getMessage());
-        return ResponseResult.failure(e.getExceptionCode(),e.getMessage());
+        return ResponseResult.failure(e.getExceptionCode());
     }
 
-    /**
-     * 处理空指针的异常
-     * @param req
-     * @param e
-     * @return
-     */
-    @ExceptionHandler(value =NullPointerException.class)
-    @ResponseBody
-    public ResponseResult exceptionHandler(HttpServletRequest req, NullPointerException e){
-        log.error("发生空指针异常！原因是:",e.getMessage());
-        return ResponseResult.failure(ExceptionCode.DATA_INVALID);
-    }
-
-    /**
-     * 处理其他异常
-     * @param req
-     * @param e
-     * @return
-     */
-//    @ExceptionHandler(value =Exception.class)
-//    @ResponseBody
-//    public ResponseResult exceptionHandler(HttpServletRequest req, Exception e){
-//        log.error("未知异常！原因是:",e.getMessage());
-//        return ResponseResult.failure(ExceptionCode.INTERNAL_SERVER_ERROR);
-//    }
 }

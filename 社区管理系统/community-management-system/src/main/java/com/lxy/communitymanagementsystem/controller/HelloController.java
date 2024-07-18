@@ -21,6 +21,6 @@ public class HelloController {
     @ResponseBody
     public ResponseResult<String> hello() {
 
-        return  ResponseResult.failure();
+        return  ResponseResult.success("hello");
     }
 }

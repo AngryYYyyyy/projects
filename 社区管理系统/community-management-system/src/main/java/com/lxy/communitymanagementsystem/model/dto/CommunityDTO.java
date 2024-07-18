@@ -97,11 +97,14 @@ public class CommunityDTO implements Serializable {
     /*------------------------------------------------------------*/
 
     /*省区名称*/
-    private String communityProvenceName;
+    private String communityProvinceName;
     /*市区名称*/
     private String communityCityName;
     /*县区名称*/
     private String communityTownName;
     /*排序顺序*/
-    private Integer sortOrder;
+    private String sortOrder;
+    /*------------------------------------------------------------*/
+    private Integer current;
+    private Integer size;
 }

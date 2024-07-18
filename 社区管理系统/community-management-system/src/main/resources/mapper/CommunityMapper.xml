@@ -24,8 +24,7 @@
     </resultMap>
 
     <resultMap id="CommunityDTOMap" type="com.lxy.communitymanagementsystem.model.dto.CommunityDTO" extends="BaseResultMap">
-        <!-- Additional results for DTO that are not present in the base entity map -->
-        <result property="communityProvenceName" column="province_name" jdbcType="VARCHAR"/>
+        <result property="communityProvinceName" column="province_name" jdbcType="VARCHAR"/>
         <result property="communityCityName" column="city_name" jdbcType="VARCHAR"/>
         <result property="communityTownName" column="town_name" jdbcType="VARCHAR"/>
     </resultMap>
@@ -42,22 +41,42 @@
     </sql>
 
 
-    <select id="queryList" parameterType="com.lxy.communitymanagementsystem.model.dto.CommunityDTO" resultMap="CommunityDTOMap">
+    <select id="listCommunitiesPage" resultMap="CommunityDTOMap">
         SELECT ac.*, ap.name as province_name, ac2.name as city_name, at.name as town_name
         FROM assets_community ac
         LEFT JOIN sys_area ap ON ac.community_province_code = ap.code
         LEFT JOIN sys_area ac2 ON ac.community_city_code = ac2.code
         LEFT JOIN sys_area at ON ac.community_town_code = at.code
         <where>
-            <if test="communityName != null and communityName != ''">
-                AND ac.community_name = #{communityName}
+            <if test="communityDTO.communityName != null and communityDTO.communityName != ''">
+                AND ac.community_name = #{communityDTO.communityName}
             </if>
-            <if test="communityCode != null and communityCode != ''">
-                AND ac.community_code = #{communityCode}
+            <if test="communityDTO.communityCode != null and communityDTO.communityCode != ''">
+                AND ac.community_code = #{communityDTO.communityCode}
             </if>
         </where>
-        <if test="sortOrder != null and communityCode != ''">
-            ORDER BY ac.community_sort #{sortOrder}
+        <if test="communityDTO.sortOrder != null and communityDTO.sortOrder != ''">
+            ORDER BY ac.community_sort ${communityDTO.sortOrder}
         </if>
     </select>
+
+    <select id="listCommunitiesByCondition" resultMap="CommunityDTOMap">
+        SELECT ac.*, ap.name as province_name, ac2.name as city_name, at.name as town_name
+        FROM assets_community ac
+        LEFT JOIN sys_area ap ON ac.community_province_code = ap.code
+        LEFT JOIN sys_area ac2 ON ac.community_city_code = ac2.code
+        LEFT JOIN sys_area at ON ac.community_town_code = at.code
+        <where>
+            <if test="communityDTO.communityName != null and communityDTO.communityName != ''">
+                AND ac.community_name = #{communityDTO.communityName}
+            </if>
+            <if test="communityDTO.communityCode != null and communityDTO.communityCode != ''">
+                AND ac.community_code = #{communityDTO.communityCode}
+            </if>
+        </where>
+        <if test="communityDTO.sortOrder != null and communityDTO.sortOrder != ''">
+            ORDER BY ac.community_sort ${communityDTO.sortOrder}
+        </if>
+    </select>
+
 </mapper>

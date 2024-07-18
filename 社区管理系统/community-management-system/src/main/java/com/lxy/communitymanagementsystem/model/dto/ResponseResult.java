@@ -2,6 +2,7 @@ package com.lxy.communitymanagementsystem.model.dto;
 
 import com.lxy.communitymanagementsystem.constant.enums.ExceptionCode;
 import com.lxy.communitymanagementsystem.constant.enums.ResponseCode;
+import com.lxy.communitymanagementsystem.exception.BusinessException;
 
 /**
  * @Author ：AngryYYYYYY
@@ -48,13 +49,10 @@ public class ResponseResult<T> {
         return new ResponseResult<>(ResponseCode.FORBIDDEN.getCode(), ResponseCode.FORBIDDEN.getMessage());
     }
 
-    public static ResponseResult failure(ExceptionCode exceptionCode, String message) {
-        return new ResponseResult<>(exceptionCode.getCode(), message);
-    }
-
     public static ResponseResult failure(ExceptionCode exceptionCode) {
         return new ResponseResult<>(exceptionCode.getCode(), exceptionCode.getMessage());
     }
+
 
     public int getCode() {
         return code;

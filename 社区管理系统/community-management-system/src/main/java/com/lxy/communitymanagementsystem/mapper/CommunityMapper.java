@@ -1,8 +1,11 @@
 package com.lxy.communitymanagementsystem.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lxy.communitymanagementsystem.model.dto.CommunityDTO;
 import com.lxy.communitymanagementsystem.model.entity.Community;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,9 +17,8 @@ import java.util.List;
 */
 public interface CommunityMapper extends BaseMapper<Community> {
 
-    List<CommunityDTO> queryList(CommunityDTO communityDTO);
+    Page<CommunityDTO> listCommunitiesPage(@Param("page") Page<CommunityDTO> page, @Param("communityDTO") CommunityDTO communityDTO);
+
+    List<CommunityDTO> listCommunitiesByCondition(@Param("communityDTO") CommunityDTO communityDTO);
 }
-
-
-
 

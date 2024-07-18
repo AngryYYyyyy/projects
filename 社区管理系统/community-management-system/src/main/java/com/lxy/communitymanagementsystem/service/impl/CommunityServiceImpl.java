@@ -1,15 +1,20 @@
 package com.lxy.communitymanagementsystem.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lxy.communitymanagementsystem.model.dto.CommunityDTO;
 import com.lxy.communitymanagementsystem.model.entity.Community;
+import com.lxy.communitymanagementsystem.model.vo.CommunityVO;
 import com.lxy.communitymanagementsystem.service.CommunityService;
 import com.lxy.communitymanagementsystem.mapper.CommunityMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
 * @author AngryYY
@@ -23,8 +28,20 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
     private CommunityMapper communityMapper;
 
     @Override
-    public List<CommunityDTO> listCommunities(CommunityDTO communityDTO) {
-        return communityMapper.queryList(communityDTO);
+    public List<CommunityDTO> listCommunitiesPage(CommunityDTO communityDTO) {
+        Page<CommunityDTO> page = new Page<>(communityDTO.getCurrent(),communityDTO.getSize());
+        Page<CommunityDTO> communityDTOPage = communityMapper.listCommunitiesPage(page, communityDTO);
+        return communityDTOPage.getRecords();
+    }
+
+    @Override
+    public List<CommunityDTO> listCommunitiesByCondition(CommunityDTO communityDTO) {
+        return communityMapper.listCommunitiesByCondition(communityDTO);
+    }
+
+    @Override
+    public Integer addCommunity(Community community) {
+        return communityMapper.insert(community);
     }
 }
 
