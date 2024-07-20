@@ -23,11 +23,11 @@ public class CommunityVO implements Serializable {
      */
     private String communityDetailedAddress;
     /*省区名称*/
-    private String communityProvenceName;
+    private String provinceName;
     /*市区名称*/
-    private String communityCityName;
+    private String cityName;
     /*县区名称*/
-    private String communityTownName;
+    private String townName;
 
     /**
      * 物业id

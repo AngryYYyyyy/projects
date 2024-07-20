@@ -24,9 +24,9 @@
     </resultMap>
 
     <resultMap id="CommunityDTOMap" type="com.lxy.communitymanagementsystem.model.dto.CommunityDTO" extends="BaseResultMap">
-        <result property="communityProvinceName" column="province_name" jdbcType="VARCHAR"/>
-        <result property="communityCityName" column="city_name" jdbcType="VARCHAR"/>
-        <result property="communityTownName" column="town_name" jdbcType="VARCHAR"/>
+        <result property="provinceName" column="province_name" jdbcType="VARCHAR"/>
+        <result property="cityName" column="city_name" jdbcType="VARCHAR"/>
+        <result property="townName" column="town_name" jdbcType="VARCHAR"/>
     </resultMap>
 
 
@@ -41,7 +41,7 @@
     </sql>
 
 
-    <select id="listCommunitiesPage" resultMap="CommunityDTOMap">
+    <select id="listCommunitiesPage" resultType="com.lxy.communitymanagementsystem.model.dto.CommunityDTO">
         SELECT ac.*, ap.name as province_name, ac2.name as city_name, at.name as town_name
         FROM assets_community ac
         LEFT JOIN sys_area ap ON ac.community_province_code = ap.code
