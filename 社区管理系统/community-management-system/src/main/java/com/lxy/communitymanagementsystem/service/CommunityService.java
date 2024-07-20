@@ -13,7 +13,6 @@ import java.util.List;
 * @createDate 2024-07-17 21:39:48
 */
 public interface CommunityService extends IService<Community> {
-     List<CommunityDTO> listCommunitiesPage(CommunityDTO communityDTO) ;
-     List<CommunityDTO> listCommunitiesByCondition(CommunityDTO communityDTO) ;
+     List<CommunityDTO> listCommunities(CommunityDTO communityDTO, Boolean isPaged);
      Integer addCommunity(Community community);
 }

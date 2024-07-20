@@ -35,20 +35,16 @@ spring:
   profiles:
     active: druid
 
-# MyBatis配置
-
 ## mybatis-plus配置
 mybatis-plus:
   ## plus的实体别名包，不需要写出实体类的完整路径，只需要写出类名即可
   type-aliases-package: com.lxy.communitymanagementsystem.model.entity
   ## mybatis  mapper.xml的位置
   mapper-locations: classpath:mapper/*Mapper.xml
-  ## mybatis  config的配置文件位置
-  config-location: classpath:mybatis/mybatis-config.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
   ## 全局配置
   global-config:
     db-config:
       ## id生成策略为雪花id
       id-type: assign_id
-    ## 不启用mybatis-plus的banner
-    banner: false

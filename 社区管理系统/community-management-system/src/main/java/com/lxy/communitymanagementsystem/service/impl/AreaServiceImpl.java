@@ -8,6 +8,7 @@ import com.lxy.communitymanagementsystem.mapper.AreaMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +32,7 @@ public class AreaServiceImpl extends ServiceImpl<AreaMapper, Area>
     }
     public List<AreaDTO> getChildrenArea(Area parentArea, List<Area> listArea) {
         List<Area> childrenArea = listArea.stream().filter(area -> area.getParentid().equals(parentArea.getCode())).toList();
-        if(childrenArea==null||childrenArea.size()==0){
+        if(childrenArea.isEmpty()){
             return null;
         }
         return childrenArea.stream().map(area -> {

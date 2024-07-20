@@ -3,6 +3,7 @@ package com.lxy.communitymanagementsystem.model.dto;
 
 
 import lombok.Data;
+import org.apache.ibatis.annotations.ResultMap;
 
 import java.io.Serializable;
 import java.util.Date;

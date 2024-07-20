@@ -27,17 +27,17 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
     @Autowired
     private CommunityMapper communityMapper;
 
-    @Override
-    public List<CommunityDTO> listCommunitiesPage(CommunityDTO communityDTO) {
-        Page<CommunityDTO> page = new Page<>(communityDTO.getCurrent(),communityDTO.getSize());
-        Page<CommunityDTO> communityDTOPage = communityMapper.listCommunitiesPage(page, communityDTO);
-        return communityDTOPage.getRecords();
-    }
 
     @Override
-    public List<CommunityDTO> listCommunitiesByCondition(CommunityDTO communityDTO) {
-        return communityMapper.listCommunitiesByCondition(communityDTO);
+    public List<CommunityDTO> listCommunities(CommunityDTO communityDTO, Boolean isPaged) {
+        if (isPaged) {
+            Page<CommunityDTO> page = new Page<>(communityDTO.getCurrent(),communityDTO.getSize()); // 设置分页参数
+            return communityMapper.listCommunitiesPage(page, communityDTO).getRecords();
+        } else {
+            return communityMapper.listCommunities(communityDTO);
+        }
     }
+
 
     @Override
     public Integer addCommunity(Community community) {
