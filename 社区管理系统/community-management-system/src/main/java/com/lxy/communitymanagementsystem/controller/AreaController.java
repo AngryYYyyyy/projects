@@ -2,11 +2,9 @@ package com.lxy.communitymanagementsystem.controller;
 
 import com.lxy.communitymanagementsystem.model.dto.AreaDTO;
 import com.lxy.communitymanagementsystem.model.dto.ResponseResult;
-import com.lxy.communitymanagementsystem.model.entity.Area;
 import com.lxy.communitymanagementsystem.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,7 +15,6 @@ import java.util.List;
  * @Description：地区控制器，处理与地区相关的请求
  */
 @RestController
-@RequestMapping("/area")
 public class AreaController {
 
     @Autowired
@@ -29,7 +26,7 @@ public class AreaController {
      * @Author: AngryYYYYYY
      * @Date: 2024/7/20
      */
-    @GetMapping("/list")
+    @GetMapping("/area")
     public ResponseResult listArea() {
         List<AreaDTO> areas = areaService.listAreaDTO();
         return ResponseResult.success(areas);

@@ -1,11 +1,13 @@
 package com.lxy.communitymanagementsystem.model.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 楼栋 
@@ -17,6 +19,7 @@ public class Building implements Serializable {
     /**
      * 楼栋id
      */
+    @TableId
     private Long buildingId;
 
     /**

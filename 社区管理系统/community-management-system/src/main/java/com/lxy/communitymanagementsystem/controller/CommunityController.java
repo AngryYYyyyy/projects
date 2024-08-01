@@ -12,7 +12,6 @@ import com.lxy.communitymanagementsystem.service.CommunityService;
 import com.lxy.communitymanagementsystem.utils.ExcelUtils;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.apachecommons.CommonsLog;
-import org.apache.ibatis.annotations.Delete;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +28,6 @@ import java.util.stream.Collectors;
  */
 @CommonsLog
 @RestController
-@RequestMapping("/community")
 public class CommunityController {
 
     @Autowired
@@ -42,7 +40,7 @@ public class CommunityController {
      * @Author: AngryYYYYYY
      * @Date: 2024/7/20
      */
-    @GetMapping("/list")
+    @GetMapping("/communities")
     public ResponseResult listCommunities(@RequestBody CommunityDTO communityDTO) {
         ModelMapper modelMapper = new ModelMapper();
         List<CommunityVO> list = communityService.listCommunities(communityDTO,true).stream().map(dto ->
@@ -58,7 +56,7 @@ public class CommunityController {
      * @Author: AngryYYYYYY
      * @Date: 2024/7/20
      */
-    @PostMapping("/add")
+    @PostMapping("/communities")
     public ResponseResult addCommunity(@RequestBody Community community) {
         Integer row = communityService.addCommunity(community);
         return ResponseResult.success(row);
@@ -71,7 +69,7 @@ public class CommunityController {
      * @Author: AngryYYYYYY
      * @Date: 2024/7/20
      */
-    @PutMapping("/update")
+    @PutMapping("/communities")
     public ResponseResult updateCommunity(@RequestBody Community community) {
         boolean b = communityService.updateById(community);
         return b?ResponseResult.success("更新操作成功"):ResponseResult.failure();
@@ -84,7 +82,7 @@ public class CommunityController {
      * @Author: AngryYYYYYY
      * @Date: 2024/7/20
      */
-    @DeleteMapping("/delete")
+    @DeleteMapping("/communities")
     public ResponseResult deleteCommunity(@RequestBody List<Integer> ids) {
         boolean b = communityService.removeBatchByIds(ids);
         return b?ResponseResult.success("删除操作成功"):ResponseResult.failure();
@@ -97,7 +95,7 @@ public class CommunityController {
      * @Date: 2024/7/20
      */
     /*TODO 后续要添加异步功能*/
-    @GetMapping("/import")
+    @PutMapping("/excel")
     public ResponseResult importCommunities(MultipartFile file) {
         ImportParams importParams = new ImportParams();
         importParams.setTitleRows(1);
@@ -117,7 +115,7 @@ public class CommunityController {
      * @Date: 2024/7/20
      */
     /*TODO 后续要添加异步功能*/
-    @GetMapping("/export")
+    @GetMapping("/excel")
     public ResponseResult exportCommunities(HttpServletResponse response) {
         List<CommunityDTO> communityDTOS = communityService.listCommunities(null,false);
 
