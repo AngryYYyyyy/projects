@@ -1,5 +1,6 @@
 package com.lxy.communitymanagementsystem.model.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -18,7 +19,7 @@ public class User implements Serializable {
     /**
      * 用户ID
      */
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long userId;
 
     /**
@@ -27,14 +28,14 @@ public class User implements Serializable {
     private Long deptId;
 
     /**
-     * 用户账号
+     * 用户名
      */
-    private String userAccount;
+    private String userName;
 
     /**
      * 用户昵称
      */
-    private String userNickname;
+    private String nickName;
 
     /**
      * 用户类型（00系统用户）
@@ -127,24 +128,24 @@ public class User implements Serializable {
         }
         User other = (User) that;
         return (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getDeptId() == null ? other.getDeptId() == null : this.getDeptId().equals(other.getDeptId()))
-            && (this.getUserAccount() == null ? other.getUserAccount() == null : this.getUserAccount().equals(other.getUserAccount()))
-            && (this.getUserNickname() == null ? other.getUserNickname() == null : this.getUserNickname().equals(other.getUserNickname()))
-            && (this.getUserType() == null ? other.getUserType() == null : this.getUserType().equals(other.getUserType()))
-            && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
-            && (this.getPhonenumber() == null ? other.getPhonenumber() == null : this.getPhonenumber().equals(other.getPhonenumber()))
-            && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
-            && (this.getAvatar() == null ? other.getAvatar() == null : this.getAvatar().equals(other.getAvatar()))
-            && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getIsDelete() == null ? other.getIsDelete() == null : this.getIsDelete().equals(other.getIsDelete()))
-            && (this.getLoginIp() == null ? other.getLoginIp() == null : this.getLoginIp().equals(other.getLoginIp()))
-            && (this.getLoginDate() == null ? other.getLoginDate() == null : this.getLoginDate().equals(other.getLoginDate()))
-            && (this.getCreateBy() == null ? other.getCreateBy() == null : this.getCreateBy().equals(other.getCreateBy()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateBy() == null ? other.getUpdateBy() == null : this.getUpdateBy().equals(other.getUpdateBy()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
-            && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()));
+                && (this.getDeptId() == null ? other.getDeptId() == null : this.getDeptId().equals(other.getDeptId()))
+                && (this.getNickName() == null ? other.getNickName() == null : this.getNickName().equals(other.getNickName()))
+                && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
+                && (this.getUserType() == null ? other.getUserType() == null : this.getUserType().equals(other.getUserType()))
+                && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
+                && (this.getPhonenumber() == null ? other.getPhonenumber() == null : this.getPhonenumber().equals(other.getPhonenumber()))
+                && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
+                && (this.getAvatar() == null ? other.getAvatar() == null : this.getAvatar().equals(other.getAvatar()))
+                && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
+                && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+                && (this.getIsDelete() == null ? other.getIsDelete() == null : this.getIsDelete().equals(other.getIsDelete()))
+                && (this.getLoginIp() == null ? other.getLoginIp() == null : this.getLoginIp().equals(other.getLoginIp()))
+                && (this.getLoginDate() == null ? other.getLoginDate() == null : this.getLoginDate().equals(other.getLoginDate()))
+                && (this.getCreateBy() == null ? other.getCreateBy() == null : this.getCreateBy().equals(other.getCreateBy()))
+                && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+                && (this.getUpdateBy() == null ? other.getUpdateBy() == null : this.getUpdateBy().equals(other.getUpdateBy()))
+                && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+                && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()));
     }
 
     @Override
@@ -153,8 +154,8 @@ public class User implements Serializable {
         int result = 1;
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getDeptId() == null) ? 0 : getDeptId().hashCode());
-        result = prime * result + ((getUserAccount() == null) ? 0 : getUserAccount().hashCode());
-        result = prime * result + ((getUserNickname() == null) ? 0 : getUserNickname().hashCode());
+        result = prime * result + ((getUserName() == null) ? 0 : getUserName().hashCode());
+        result = prime * result + ((getNickName() == null) ? 0 : getNickName().hashCode());
         result = prime * result + ((getUserType() == null) ? 0 : getUserType().hashCode());
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         result = prime * result + ((getPhonenumber() == null) ? 0 : getPhonenumber().hashCode());
@@ -181,8 +182,8 @@ public class User implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", userId=").append(userId);
         sb.append(", deptId=").append(deptId);
-        sb.append(", userAccount=").append(userAccount);
-        sb.append(", userNickname=").append(userNickname);
+        sb.append(", username=").append(userName);
+        sb.append(", nickname=").append(nickName);
         sb.append(", userType=").append(userType);
         sb.append(", email=").append(email);
         sb.append(", phonenumber=").append(phonenumber);

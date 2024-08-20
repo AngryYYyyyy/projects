@@ -19,9 +19,9 @@ import java.util.List;
 public interface CommunityMapper extends BaseMapper<Community> {
 
     @SelectProvider(type = CommunitySqlProvider.class, method = "listCommunities")
-    Page<CommunityDTO> listCommunitiesPage(@Param("page") Page<CommunityDTO> page, @Param("communityDTO") CommunityDTO communityDTO);
+    Page<CommunityDTO> selectListCommunitiesPage(@Param("page") Page<CommunityDTO> page, @Param("communityDTO") CommunityDTO communityDTO);
 
     @SelectProvider(type = CommunitySqlProvider.class, method = "listCommunities")
-    List<CommunityDTO> listCommunities(@Param("communityDTO") CommunityDTO communityDTO);
+    List<CommunityDTO> selectListCommunities(@Param("communityDTO") CommunityDTO communityDTO);
 }
 

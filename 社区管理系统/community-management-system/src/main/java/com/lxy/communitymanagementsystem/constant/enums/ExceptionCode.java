@@ -1,10 +1,13 @@
 package com.lxy.communitymanagementsystem.constant.enums;
 
+import lombok.Getter;
+
 /**
  * @Author ：AngryYYYYYY
  * @Date ：Created in 2024/7/17 20:21
  * @Description：
  */
+@Getter
 public enum ExceptionCode {
     RESOURCE_NOT_FOUND(404, "请求的资源未找到"),
     DATA_INVALID(400, "提供的数据无效"),
@@ -22,12 +25,5 @@ public enum ExceptionCode {
         this.message = message;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 }
 

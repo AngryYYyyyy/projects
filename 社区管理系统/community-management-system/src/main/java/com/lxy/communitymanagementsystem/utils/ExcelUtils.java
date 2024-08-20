@@ -43,7 +43,10 @@ public class ExcelUtils {
      * @Author: AngryYYYYYY
      * @Date: 2024/7/20
      */
-    public static List<?> importExcel(MultipartFile file, Class<?> pojoClass,ImportParams importParams) {
+    public static List<?> importExcel(MultipartFile file, Class<?> pojoClass) {
+        ImportParams importParams = new ImportParams();
+        importParams.setTitleRows(1);
+        importParams.setHeadRows(1);
         List<?> dataList = new ArrayList<>();
         try {
             // 使用ExcelImportUtil将Sheet中的数据映射到指定的pojo类

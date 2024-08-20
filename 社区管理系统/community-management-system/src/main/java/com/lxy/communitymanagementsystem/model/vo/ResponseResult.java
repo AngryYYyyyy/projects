@@ -1,14 +1,17 @@
-package com.lxy.communitymanagementsystem.model.dto;
+package com.lxy.communitymanagementsystem.model.vo;
 
 import com.lxy.communitymanagementsystem.constant.enums.ExceptionCode;
 import com.lxy.communitymanagementsystem.constant.enums.ResponseCode;
-import com.lxy.communitymanagementsystem.exception.BusinessException;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @Author ：AngryYYYYYY
  * @Date ：Created in 2024/7/17 19:46
  * @Description：自定义处理响应
  */
+@Setter
+@Getter
 public class ResponseResult<T> {
     private int code;
     private String message;
@@ -32,9 +35,18 @@ public class ResponseResult<T> {
     public static <T> ResponseResult<T> success(T data) {
         return new ResponseResult<>(ResponseCode.SUCCESS.getCode(), ResponseCode.SUCCESS.getMessage(), data);
     }
+    public static <T> ResponseResult<T> success(ExceptionCode exceptionCode,T data) {
+        return new ResponseResult<>(exceptionCode.getCode(), exceptionCode.getMessage(), data);
+    }
 
     public static <T> ResponseResult<T> failure() {
         return new ResponseResult<>(ResponseCode.FAILED.getCode(), ResponseCode.FAILED.getMessage());
+    }
+    public static ResponseResult failure(String message) {
+        return new ResponseResult<>(ResponseCode.FAILED.getCode(), message);
+    }
+    public static ResponseResult failure(Integer code,String message) {
+        return new ResponseResult<>(code, message);
     }
 
     public static <T> ResponseResult<T> validationFailure() {
@@ -49,33 +61,6 @@ public class ResponseResult<T> {
         return new ResponseResult<>(ResponseCode.FORBIDDEN.getCode(), ResponseCode.FORBIDDEN.getMessage());
     }
 
-    public static ResponseResult failure(ExceptionCode exceptionCode) {
-        return new ResponseResult<>(exceptionCode.getCode(), exceptionCode.getMessage());
-    }
 
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 }
 

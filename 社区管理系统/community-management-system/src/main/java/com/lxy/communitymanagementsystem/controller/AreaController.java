@@ -1,7 +1,7 @@
 package com.lxy.communitymanagementsystem.controller;
 
 import com.lxy.communitymanagementsystem.model.dto.AreaDTO;
-import com.lxy.communitymanagementsystem.model.dto.ResponseResult;
+import com.lxy.communitymanagementsystem.model.vo.ResponseResult;
 import com.lxy.communitymanagementsystem.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

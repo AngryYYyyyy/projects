@@ -1,20 +1,15 @@
 package com.lxy.communitymanagementsystem.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.lxy.communitymanagementsystem.mapper.CommunityMapper;
 import com.lxy.communitymanagementsystem.model.dto.CommunityDTO;
 import com.lxy.communitymanagementsystem.model.entity.Community;
-import com.lxy.communitymanagementsystem.model.vo.CommunityVO;
 import com.lxy.communitymanagementsystem.service.CommunityService;
-import com.lxy.communitymanagementsystem.mapper.CommunityMapper;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
 * @author AngryYY
@@ -29,20 +24,16 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
 
 
     @Override
-    public List<CommunityDTO> listCommunities(CommunityDTO communityDTO, Boolean isPaged) {
+    public List<CommunityDTO> getListCommunities(CommunityDTO communityDTO, Boolean isPaged) {
         if (isPaged) {
             Page<CommunityDTO> page = new Page<>(communityDTO.getCurrent(),communityDTO.getSize()); // 设置分页参数
-            return communityMapper.listCommunitiesPage(page, communityDTO).getRecords();
+            return communityMapper.selectListCommunitiesPage(page, communityDTO).getRecords();
         } else {
-            return communityMapper.listCommunities(communityDTO);
+            return communityMapper.selectListCommunities(communityDTO);
         }
     }
 
 
-    @Override
-    public Integer addCommunity(Community community) {
-        return communityMapper.insert(community);
-    }
 }
 
 

@@ -1,9 +1,8 @@
 package com.lxy.communitymanagementsystem.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.lxy.communitymanagementsystem.model.dto.CommunityDTO;
 import com.lxy.communitymanagementsystem.model.entity.Community;
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.lxy.communitymanagementsystem.model.vo.CommunityVO;
 
 import java.util.List;
 
@@ -13,6 +12,5 @@ import java.util.List;
 * @createDate 2024-07-17 21:39:48
 */
 public interface CommunityService extends IService<Community> {
-     List<CommunityDTO> listCommunities(CommunityDTO communityDTO, Boolean isPaged);
-     Integer addCommunity(Community community);
+     List<CommunityDTO> getListCommunities(CommunityDTO communityDTO, Boolean isPaged);
 }

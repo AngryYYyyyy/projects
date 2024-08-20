@@ -1,6 +1,5 @@
 package com.lxy.communitymanagementsystem.utils;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,9 +13,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Author ：AngryYYYYYY
- * @Date ：Created in 2024/8/1 17:07
- * @Description：spring redis 工具类
+ * spring redis 工具类
  */
 @SuppressWarnings(value = {"unchecked", "rawtypes"})
 @Component
@@ -209,3 +206,4 @@ public class RedisCache {
         return redisTemplate.keys(pattern);
     }
 }
+

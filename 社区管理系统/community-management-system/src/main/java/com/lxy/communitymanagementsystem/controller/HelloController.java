@@ -1,8 +1,7 @@
 package com.lxy.communitymanagementsystem.controller;
 
-import com.lxy.communitymanagementsystem.model.dto.ResponseResult;
-import com.lxy.communitymanagementsystem.service.CommunityService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.lxy.communitymanagementsystem.model.vo.ResponseResult;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,13 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class HelloController {
-    @Autowired
-    private CommunityService communityService;
 
     @GetMapping("/hello")
     @ResponseBody
+    @PreAuthorize("hasRole('admin')")
     public ResponseResult<String> hello() {
-
         return  ResponseResult.success("hello");
     }
 }

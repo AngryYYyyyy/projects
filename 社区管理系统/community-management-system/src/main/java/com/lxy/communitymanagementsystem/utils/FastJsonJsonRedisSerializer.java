@@ -6,17 +6,13 @@ package com.lxy.communitymanagementsystem.utils;
  * @Description：
  */
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.parser.ParserConfig;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
-import io.jsonwebtoken.lang.Assert;
-import org.apache.commons.lang3.SerializationException;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONReader;
+import com.alibaba.fastjson2.JSONWriter;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.SerializationException;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Redis使用FastJson进行序列化
@@ -25,17 +21,7 @@ import java.nio.charset.Charset;
  * @date 2023/4/10
  **/
 public class FastJsonJsonRedisSerializer<T> implements RedisSerializer<T> {
-
-    @SuppressWarnings("unused")
-    private ObjectMapper objectMapper = new ObjectMapper();
-
-    public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
-
-    private Class<T> clazz;
-
-    static {
-        ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
-    }
+    private final Class<T> clazz;
 
     public FastJsonJsonRedisSerializer(Class<T> clazz) {
         super();
@@ -43,11 +29,11 @@ public class FastJsonJsonRedisSerializer<T> implements RedisSerializer<T> {
     }
 
     @Override
-    public byte[] serialize(T t) throws SerializationException {
+    public byte[] serialize(T t) throws org.springframework.data.redis.serializer.SerializationException {
         if (t == null) {
             return new byte[0];
         }
-        return JSON.toJSONString(t, SerializerFeature.WriteClassName).getBytes(DEFAULT_CHARSET);
+        return com.alibaba.fastjson2.JSON.toJSONString(t, JSONWriter.Feature.WriteClassName).getBytes(StandardCharsets.UTF_8);
     }
 
     @Override
@@ -55,17 +41,7 @@ public class FastJsonJsonRedisSerializer<T> implements RedisSerializer<T> {
         if (bytes == null || bytes.length <= 0) {
             return null;
         }
-        String str = new String(bytes, DEFAULT_CHARSET);
-
-        return JSON.parseObject(str, clazz);
-    }
-
-    public void setObjectMapper(ObjectMapper objectMapper) {
-        Assert.notNull(objectMapper, "'objectMapper' must not be null");
-        this.objectMapper = objectMapper;
-    }
-
-    protected JavaType getJavaType(Class<?> clazz) {
-        return TypeFactory.defaultInstance().constructType(clazz);
+        String str = new String(bytes, StandardCharsets.UTF_8);
+        return JSON.parseObject(str, clazz, JSONReader.Feature.SupportAutoType);
     }
 }
